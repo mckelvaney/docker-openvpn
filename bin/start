@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+#
+# Run the services
+#
+
+echo "Starting dnsmasq"
+exec "dnsmasq" "--server=$DNS_FORWARDER" &
+
+echo "Staring openvpn"
+exec "ovpn_run"
