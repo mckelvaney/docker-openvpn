@@ -11,6 +11,14 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/reposi
     ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
+# Install dnsmasq
+RUN apk add --update dnsmasq
+RUN cp /etc/dnsmasq.conf /etc/dnsmasq.d/dnsmasq.conf
+
+VOLUME ["/etc/dnsmasq.d/"]
+
+ENV DNS_FORWARDER 8.8.8.8
+
 # Needed by scripts
 ENV OPENVPN /etc/openvpn
 ENV EASYRSA /usr/share/easy-rsa
